@@ -1,0 +1,109 @@
+# Lautgetreue Einsilber
+acht, alt, Angst, Ast, Baum, Bein, blau, braun, breit, Brief, Brot, Buch, bunt, Dach, drei, Ei, eins, Eis, elf, Fach, fein, feucht, Fisch, Frau, frisch, fünf, gleich, Gras, grün, gut, Hals, Haus, Heft, Hut, jung, kalt, klein, Knie, Kopf, Kraut, Kreis, lang, laut, leicht, Licht, Loch, los, Luft, Maus, Mensch, Milch, Nacht, neu, neun, Pilz, reich, Ring, rot, Saft, Salz, Schal, schief, schön, Schrift, Seil, Tisch, tun, weit, Welt, Zaun, Zeit, zwei, zwölf
+# Lautgetreue Wörter auf -e
+Ameise, Auge, Biene, Blume, Blüte, böse, Ende, Ente, Eule, Freude, Gemüse, Hase, heute, Hose, Junge, Küche, leise, Leute, Name, Nase, Ochse, Pflaume, Raupe, Riese, Sache, Schere, Schlange, Seife, Seite, Tante, Tasche, Wiese, Woche
+# Lautgetreue Wörter auf -en
+bauen, biegen, bleiben, brauchen, bringen, dachten, fangen, finden, fliegen, fragen, freuen, Frieden, frieren, geben, halten, helfen, holen, hören, impfen, kaufen, kleben, kochen, kriechen, kriegen, Kuchen, lachen, laufen, leben, legen, lesen, leuchten, liegen, machen, malen, oben, pflanzen, pflegen, rechnen, reden, Regen, reisen, riechen, rufen, sagen, schauen, scheinen, schieben, schimpfen, schlafen, schlagen, schneiden, schreiben, schreien, schweigen, sieben, singen, suchen, tragen, üben, unten, waschen, wünschen, zeigen, zwischen
+# Lautgetreue Wörter auf -el
+Ampel, Apfel, Bügel, Flügel, Gabel, Insel, Nebel, Nabel, Nudel, Pinsel, Schnabel, Tafel, Teufel, Windel, Zwiebel
+# Lautgetreue Wörter auf -er
+Bruder, erster, euer, Fenster, Feuer, Finger, Hunger, keiner, Kleber, leider, Leiter, Meter, Pflaster, Schwester, selber, Tochter
+# Lautgetreue Wörter mit -er- innerhalb der unbetonten Silbe
+anders, Eltern, flüstern, gestern, hundert, Ostern
+# Lautgetreue Wörter mit vokalisiertem r im Endlaut
+Bier, Flur, Papier, Schnur, schwer, Tier, Tor, Tür
+# Lautgetreue Wörter mit vokalisiertem r im Inlaut
+antworten, Birne, dort, Durst, Erde, erst, erster, gerne, Gurke, Herz, Kirche, Kirsche, Körper, kurz, lernen, merken, morgen, turnen, Wort, Würfel, Wurm, Wurst, Wurzel
+# Wörter mit vokalisiertem r nach a
+arbeiten, Arm, Farbe, hart, klar, Marke, Nachbar, scharf, sogar, schwarz, warm, warten
+# Einsilbige lautgetreue Funktionswörter
+als, auch, auf, aus, bei, bist, da, dein+, dem, den, dich, die, dies+, doch, du, ein+, euch, ganz+, ich, ist, ja, kein+, mein+, mich, nach, nein, nicht, (nichts), nie, noch, nun, oft, schon, sein+, seit, sich, sie, so, uns+, weil, wem, wen, wie, wo, zu
+# Funktionswörter mit vokalisiertem r
+der, dir, durch, dürfen, er, für, her, hier, mir, nur, war, wer, werden, zur
+# Funktionswörter mit Kurzvokal und einem folgenden Konsonanten
+am, an, bin, bis, das, des, es, hat, hin, im, in, man, mit, um, warum, was, zum
+# Funktionswörter mit Doppelkonsonanz
+alle, dann, denn, hatte, immer, können, müssen, sollen, wann, wenn, wollen
+# Funktionswörter mit Auslautverhärtung
+ab, bald, seid, sind, und
+# Funktionswörter mit Dehnungs-h
+ihm, ihn+, ihr+, mehr, sehr, ohne
+# Funktionswörter mit v
+viel, vom, von, vor
+# Funktionswörter mit der Endung -er
+aber, hinter, oder, über, unter, weiter, wieder, (immer)
+# Mehrsilbige Funktionswörter
+also, eure, etwas, gegen, habe, haben, (hatte), jede+, mögen, waren, welche
+# Lautgetreue Wörter mit sp und st
+sparen, Spiegel, spielen, Sport, sprechen, springen
+Stein, Stern, Stift, stolz, Strauch, streichen, streiten, Stunde, Sturm
+# Wörter mit sp und st und Orthographemen oder Besonderheiten
+Spaß, spät, Spaziergang, Spinne, spitz
+Stadt, Stamm, stark, stehen, stellen, still, Stimme, Stoff, Strand, Straße, Stück, Stuhl
+# Wörter mit nk
+Bank, danken, denken, dunkel, krank, Onkel, Punkt, schenken, Schrank, trinken
+# Wörter mit qu
+bequem, Quadrat, quaken, Qualle, Quark, Quatsch, Quelle, quer, quietschen
+# Wörter mit Doppelkonsonanz
+Affe, alle, backen, besser, Bett, bitten, blicken, Blitz, Block, brennen, Brille, Brücke, Butter, Decke, dick, doppelt, dreckig, drucken, drücken, dumm, dünn, fett, Fluss, flüssig, fressen, Füller, glatt, Glück, Gott, gucken, hell, Herr, Hessen, Himmel, Hitze, hoffen, Jacke, Katze, kennen, Klasse, klettern, kommen, können, kratzen, lassen, lecker, Löffel, messen, Messer, Mitte, Mutter, Müll, Mütze, Null, Nummer, Nuss, offen, packen, passen, pflücken, Platz, Puppe, putzen, Qualle, Quelle, rennen, rollen, Rock, Rücken, sammeln, schaffen, Schiff, Schloss, Schlüssel, schmecken, Schmutz, schnell, Schreck, schütteln, Schutz, schwimmen, schwitzen, Sessel, setzen, sitzen, sollen, Sommer, Sonne, Spinne, spitz, stellen, still, Stimme, Stoff, Stück, Tanne, Tasse, Teller, toll, treffen, trocken, voll, Wasser, witzig, Zimmer, Zucker
+# Wörter mit Doppelkonsonanz und a-ä-Ableitung
+Ball – Bälle, Blatt – Blätter, fallen – fällt, Kamm – Kämme, lassen – lässt, Mann – Männer, Pass – Pässe, Satz – Sätze, Schatz – Schätze, Stamm – Stämme
+# Wörter mit Doppelkonsonanz in komplexen Wortstrukturen oder anderen Besonderheiten
+allein, bekommen, bisschen, Donnerstag, entdecken, entwickeln, erinnern, erschrecken, Fußball, hallo, herstellen, hoffentlich, innerhalb, interessant, jetzt, kaputt, letzte, Mittag, Mittwoch, passieren, plötzlich, Programm, Pullover, Pommes, Sonntag, überall, vergessen, verletzen, verstecken, vielleicht, zuletzt, zurück, zusammen
+# Wörter mit silbentrennendem h
+blühen, drehen, früh, gehen, Kuh, nah, Reh, Reihe, Ruhe, Schuh, sehen, stehen, Zeh, ziehen
+# Wörter mit Dehnungs-h
+Bahn, bohren, fahren, fehlen, Fehler, fühlen, Höhle, Huhn, Jahr, kühl, Lehrer, nehmen, Ohr, rühren, Stuhl, Uhr, wohl, wohnen, Zahl, Zahn, zehn
+# Wörter mit h in komplexen Wortformen
+ähnlich, bezahlen, erzählen, Fahrrad, Frühling, Frühstück, Gefahr, ungefähr, Verkehr, während, Weihnachten
+# Wörter mit Doppelvokal
+Beere, Boot, Haar, Idee, leer, Meer, paar, Schnee, See, Tee, Zoo
+# Wörter mit Auslautverhärtung, die durch Verlängerung erschlossen werden können
+Abend, Berg, Bild, blind, Feld, fremd, Freund, gelb, genug (genügende), gesund, Grund (Gründe), Hemd, Hund, Kind, Kleid, klug, Krieg, lieb, Lied, Mund (Münder), Pferd, rund, Tag, tausend, Tod, Urlaub, Weg, wild, Wind, Zug (Züge)
+# Komplexe Wörter mit Auslautverhärtung
+Fahrrad, Flugzeug, Mittag, Montag, Dienstag, Donnerstag, Freitag, Samstag, Sonntag
+# Merkschreibungen zur Auslautverhärtung
+bald, deshalb, endlich, Ergebnis, Herbst, innerhalb, irgend, jemand, Jugend, Mädchen, niemand, ob, Obst, Ordnung, Sand, selbst, unterwegs
+# Wörter mit Auslautverhärtung und Umlautung a – ä
+Bad – Bäder, Brand – Brände, Hand – Hände, Land – Länder, Rad – Räder, Strand – Strände, Wald – Wälder
+# Lautgetreue ableitbare Nomen mit Umlautung a – ä
+Arzt – Ärzte, Apfel – Äpfel, Ast – Äste, Dach – Dächer, Fach – Fächer, Garten – Gärten, Gras – Gräser, Hals – Hälse, Nacht – Nächte, Saft – Säfte
+# Lautgetreue ableitbare Verben und Adjektive mit Umlautung a – ä
+alt – älter, halten – hält, hart – härter, kalt – kälter – Kälte, kämpfen – Kampf, lang – länger – Länge, scharf – schärfer – Schärfe, schlagen – schlägt, Schlange – schlängeln, schwarz – schwärzen, stark – stärker – Stärke, tragen – trägt, warm – wärmer – Wärme, wachsen – wächst – Gewächs, waschen – wäscht, Zahl – zählen
+# Ableitbare Wörter mit Umlautung a – ä und Orthographem oder komplexer Wortform
+Bad – Bäder, Ball – Bälle, Bank – Bänke, Blatt – Blätter, Brand – Brände, Draht – Drähte, fahren– fährt, Fahrrad – Fahrräder, erkältet – kalt – kälter, fallen – fällt, Gefahr – gefährlich, Jahr – jährlich, Kamm – Kämme – kämmen, Katze – Kätzchen, krank – kränker, Land – Länder, lassen – lässt, nah – näher – Nähe, nass – Nässe, packen – Gepäck – Päckchen, Pass – Pässe, Platz – Plätze, Rad – Räder, Satz – Sätze, Schatz – Schätze, Schrank – Schränke, Spaß – Späße, Stamm – Stämme, Strand – Strände, Tanne – Tännchen, Vase – Väschen, Vater – Väter, Wald – Wälder, Wasser – Wässer – Gewässer, Zahn – Zähne
+# Ableitbare Wörter mit äu
+außen – äußerlich, bauen – Gebäude, blau – bläulich, braun – bräunlich, Frau – Fräulein, Haus – Häuser, kaufen – Verkäufer, Kraut – Kräuter, laufen – (du) läufst – Läufer, laut – läuten, Maus – Mäuse, Raum – Räume – aufräumen, Strauch – Sträucher, Zaun – Zäune
+# Wörter mit vorangestellten Wortbausteinen
+aufräumen, aufwachen, bekommen, bezahlen, entdecken, entwickeln, erinnern, Gesicht
+# Wörter mit nachgestelltem Wortbaustein -lich
+ähnlich, deutlich, eigentlich, endlich, nämlich, natürlich, plötzlich, schließlich
+# Wörter mit nachgestelltem Wortbaustein -ig
+dreckig, fertig, fleißig, flüssig, Käfig, König, mutig, richtig, riesig, schwierig, vorsichtig
+# Wörter mit v
+bevor, brav, davon, November, Pullover, Silvester, Vase, Vater, verbieten, Verein, vergessen, Verkehr, verletzen, verlieren, verstecken, Versuch, verwandt, viele, vielleicht, vier, Virus, Vogel, vorne, voll, vorsichtig, vorwärts, Vulkan
+# Wörter mit chs
+Dachs, Fuchs, Ochse, sechs, Wachs, wachsen, wechseln
+# Wörter mit x
+boxen, Hexe, Lexikon, Taxi, Text
+# Wörter mit y
+Baby, Handy, Pony, Teddy
+# Wörter mit c
+Cent, Clown, Comic, Computer
+# Wörter mit ch bei besonderer Aussprache
+Chance, Chef, Chor
+# Wörter mit ä ohne Ableitung
+ähnlich, ärgern, Bär, erklären, erzählen, hängen, Käfer, Käfig, Käse, Lärm, Mädchen, März, nächste, nämlich, spät, Träne, ungefähr, vorwärts, während
+# Fremdwörter
+Auto, Bus, E-Mail, Euro, Europa, fair, Ferien, hallo, Idee, interessant, Internet, Kalender, Lineal, Linie, Mai, Maschine, Medien, Minute, Monat, Musik, Paket, Pizza, Pommes, Programm, Radio, Sekunde, Telefon, Temperatur, Theater, Thema,
+trainieren
+# Monatsnamen
+Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember
+# Wörter mit einfach geschriebenem i <i> für lang gesprochenes i /i:/
+Igel, Juli, Juni, Liter, Maschine, Musik, Tiger
+# Merkwörter
+bereits, bisschen, Draht, Geburtstag, hoffentlich, jetzt, kaputt, letzte, links, passieren, rechts, unterwegs, zuletzt
+# Wörter mit ß
+außen, beißen, bloß, draußen, fleißig, fließen, Fuß, gießen, groß, grüßen, heiß, ließen, reißen, schließen, Soße, Spaß, Straße, süß, weiß
+# Wörter mit nachgestellten Wortbausteinen, die Substantive anzeigen
+Entfernung, Ergebnis, Heizung, Ordnung, Zeitung, Zeugnis

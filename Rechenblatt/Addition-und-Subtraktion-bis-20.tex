@@ -1,0 +1,47 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = de_DE_OLDSPELL
+% !TEX TS-program = lualatex
+\ifdefined\directlua\else
+	\errmessage{LuaTeX is required to typeset this document}
+	\csname @@end\expandafter\endcsname
+\fi
+\documentclass[version=last,paper=A4,fontsize=14pt,DIV=18]{scrartcl}
+\usepackage{scrlayer-scrpage}
+\usepackage{polyglossia}
+\setmainlanguage[spelling=new,variant=german]{german}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage{tabularray}
+\usepackage{tikz}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{multicol}
+
+\mdfdefinestyle{Rechnen}{%
+	linecolor=gray,
+	outerlinewidth=1pt,
+	roundcorner=5pt,
+}
+
+\pagestyle{empty}
+%\clearpairofpagestyles
+%\ifoot{\scriptsize\today}
+\renewcommand*{\titlepagestyle}{empty}
+\setlength{\parindent}{0pt}
+\newcommand{\placeholderx}[1]{\tikz[baseline]{\node[draw=gray, dotted, line width=1pt, inner sep=4pt, outer sep=0pt, rounded corners=2pt]{\strut\hspace*{#1}\strut};}}
+\newcommand{\placeholder}{\placeholderx{3em}}
+
+%\usepackage{lua-visual-debug}
+
+\begin{document}
+	\section*{Plus \& Minus getrennt bis 20}
+	
+	\input{aufgaben-plus-1op-bis-20.tex}
+	\input{aufgaben-minus-1op-bis-20.tex}
+	
+	\pagebreak
+	
+	\section*{Plus \& Minus gemischt bis 20}
+
+	\input{aufgaben-plusminus-1op-bis-20.tex}
+	\input{aufgaben-plusminus-1op-bis-20-zwo.tex}
+\end{document}

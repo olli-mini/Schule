@@ -1,0 +1,131 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = de_DE_OLDSPELL
+% !TEX TS-program = lualatex
+\ifdefined\directlua\else
+	\errmessage{LuaTeX is required to typeset this document}
+	\csname @@end\expandafter\endcsname
+\fi
+\documentclass[version=last,paper=A5,landscape,fontsize=17pt,DIV=20]{scrartcl}
+\usepackage{scrlayer-scrpage}
+\usepackage{polyglossia}
+\setmainlanguage[spelling=old,variant=german]{german}
+\usepackage{microtype}
+\usepackage{fontspec}
+%\usepackage{tabularray}
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections}
+\newfontfamily\prima{Prima}
+\defaultfontfeatures[\prima]{Ligatures=TeX,Renderer=HarfBuzz}
+%\setmainfont{font}
+%\setmonofont{font}
+%\setromanfont{font}
+%\setsansfont{font}
+
+%\def\fontfeatures{abvf, abvm, abvs, aalt, akhn, nalt, halt, afrc, valt, vhal, blwf, blwm, blws, cpsp, c2pc, c2sc, case, cpct, cv01, cv02, cv03, cv04, cv05, cv06, cv07, cv08, cv09, cv10, cv11, cv12, cv13, cv14, cv15, cv16, cv17, cv18, cv19, cv20, cv21, cv22, cv23, cv24, cv25, cv26, cv27, cv28, cv29, cv30, cv31, cv32, cv33, cv34, cv35, cv36, cv37, cv38, cv39, cv40, cv41, cv42, cv43, cv44, cv45, cv46, cv47, cv48, cv49, cv50, cv51, cv52, cv53, cv54, cv55, cv56, cv57, cv58, cv59, cv60, cv61, cv62, cv63, cv64, cv65, cv66, cv67, cv68, cv69, cv70, cv71, cv72, cv73, cv74, cv75, cv76, cv77, cv78, cv79, cv80, cv81, cv82, cv83, cv84, cv85, cv86, cv87, cv88, cv89, cv90, cv91, cv92, cv93, cv94, cv95, cv96, cv97, cv98, cv99, cjct, cfar, calt, clig, cswh, curs, dnom, dlig, dist, expt, falt, frac, fwid, ccmp, haln, half, hwid, hngl, hist, hlig, hkna, hojo, init, isol, ital, jp04, jp78, jp83, jp90, jalt, kern, lnum, ljmo, lfbd, ltra, ltrm, locl, mark, mset, mkmk, mgrk, medi, med2, nlck, nukt, numr, onum, opbd, size, ordn, ornm, pcap, pref, pres, psts, pstf, palt, vpal, pnum, pkna, pwid, qwid, rand, rkrf, rphf, rlig, rtbd, rtla, rtlm, ruby, sinf, smpl, zero, smcp, liga, salt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, ss10, ss11, ss12, ss13, ss14, ss15, ss16, ss17, ss18, ss19, ss20, subs, sups, swsh, tnum, fina, fin2, fin3, twid, titl, trad, tnam, tjmo, unic, vatu, vert, vrt2, vkna, vkrn, vjmo}
+%% see http://en.wikipedia.org/wiki/OpenType_feature_tag_list#OpenType_Typographic_Features for their list 
+%\ExplSyntaxOn
+%\newcommand\listfontfeatures{%
+%	\renewcommand*{\do}[1]{
+%		\fontspec_if_feature:nTF {##1}{##1,\ }{}
+%	}
+%	\expandafter\docsvlist\expandafter{\fontfeatures}
+%}
+%\ExplSyntaxOff
+
+\pagestyle{empty}
+\renewcommand*{\titlepagestyle}{empty}
+\setlength{\parindent}{0pt}
+
+\tikzset{
+	hilfsline/.style={gray,densely dotted,semithick},
+	Hilfsline/.style={lightgray,solid,thick},
+	grundschriftprobe/.style={font=\prima\addfontfeatures{StylisticSet={4,5,6,9,17}}},
+	schreibschriftprobe/.style={font=\prima\itshape\addfontfeatures{StylisticSet={4,5,6,9,17}}},
+	unsichtbar/.style={opacity=0,anchor=text,inner sep=0pt},
+	textprobe/.style={anchor=text,inner sep=0pt},
+}
+
+\newrobustcmd{\schreibschrift}[1]{
+	\begin{tikzpicture}[schreibschriftprobe,anchor=text]
+		\node[unsichtbar](ABC) {ABCDefgkjHpqxyzß};
+		\node[unsichtbar](Umlaute) {ÄÖÜ};
+
+		\coordinate (ABCLowest) at (ABC.south west); % unten links (bspw. tiefster Punkt eines y)
+		\coordinate (ABCBase) at (ABC.text); % Grundlinie der Schrift
+		\coordinate (ABCSmallHeight) at ($(ABC.text)+(0, 1ex)$); % Höhe des kleinen Buchstaben x
+		\coordinate (ABCHighest) at (ABC.north west); % Versalhöhe
+
+		\draw[hilfsline] (ABCBase) -- ++(\textwidth,0);
+		\draw[hilfsline] (ABCSmallHeight) -- ++(\textwidth,0);
+		\draw[Hilfsline] (ABCLowest) -- ++(\textwidth,0);
+		\draw[Hilfsline] (ABC.north west) -- ++(\textwidth,0);
+
+		\node[textprobe] {~#1};
+	\end{tikzpicture}
+	\par
+	\vspace{.75ex}
+}
+
+\newrobustcmd{\grundschrift}[1]{
+	\begin{tikzpicture}[grundschriftprobe,anchor=text]
+		\node[unsichtbar](ABC) {ABCDefgkjHpqxyzß};
+		\node[unsichtbar](Umlaute) {ÄÖÜ};
+
+		\coordinate (ABCLowest) at (ABC.south west); % unten links (bspw. tiefster Punkt eines y)
+		\coordinate (ABCBase) at (ABC.text); % Grundlinie der Schrift
+		\coordinate (ABCSmallHeight) at ($(ABC.text)+(0, 1ex)$); % Höhe des kleinen Buchstaben x
+		\coordinate (ABCHighest) at (ABC.north west); % Versalhöhe
+
+		\draw[hilfsline] (ABCBase) -- ++(\textwidth,0);
+		\draw[hilfsline] (ABCSmallHeight) -- ++(\textwidth,0);
+		\draw[Hilfsline] (ABCLowest) -- ++(\textwidth,0);
+		\draw[Hilfsline] (ABC.north west) -- ++(\textwidth,0);
+
+		\node[textprobe] {~#1};
+	\end{tikzpicture}
+	\par
+	\vspace{.75ex}
+}
+
+\begin{document}
+% \prima\listfontfeatures
+
+% k-Linie
+% H-Linie
+% |-| Oberlänge (Majuskelhöhe, Versalhöhe)
+% x-Linie (x-Höhe)
+% |-| Mittellänge
+% Schriftlinie (Grundlinie)
+% |-| Unterlänge
+% p-Linie
+
+% dicktengleich == monospaced
+
+%\tikz[rotate=270,draw,red] (bla) node {Grundschrift};
+\tikz[opacity=100,anchor=text,thick,rounded corners=3pt] node {Grundschrift};
+
+\grundschrift{A\,a~~B\,b~~C\,c~~D\,d~~E\,e~~F\,f~~G\,g~~H\,h~~I\,i~~J\,j~~K\,k~~L\,l~~M\,m~~N\,n~~O\,o}
+\grundschrift{P\,p~~Q\,q~~R\,r~~S\,s~~T\,t~~U\,u~~V\,v~~W\,w~~X\,x~~Y\,y~~Z\,z~~Ä\,ä~~Ö\,ö~~Ü\,ü~~ẞ\,ß}
+\grundschrift{0~~1~~2~~3~~4~~5~~6~~7~~8~~9~~.~~,~~!~~?~~;~~+~~-}
+
+\begin{small}
+	\grundschrift{Franz jagt im komplett verwahrlosten Taxi quer durch Bayern.}
+	\grundschrift{„Fix, Schwyz!“ quäkt Jürgen blöd vom Paß.}
+	\grundschrift{Falsches Üben von Xylophonmusik quält jeden größeren Zwerg.}
+\end{small}
+
+Schreibschrift
+
+\schreibschrift{A\,a~~B\,b~~C\,c~~D\,d~~E\,e~~F\,f~~G\,g~~H\,h~~I\,i~~J\,j~~K\,k~~L\,l~~M\,m~~N\,n~~O\,o}
+\schreibschrift{P\,p~~Q\,q~~R\,r~~S\,s~~T\,t~~U\,u~~V\,v~~W\,w~~X\,x~~Y\,y~~Z\,z~~Ä\,ä~~Ö\,ö~~Ü\,ü~~ẞ\,ß}
+\schreibschrift{0~~1~~2~~3~~4~~5~~6~~7~~8~~9~~.~~,~~!~~?~~;~~+~~-}
+
+\begin{small}
+	\schreibschrift{Franz jagt im komplett verwahrlosten Taxi quer durch Bayern.}
+	\schreibschrift{„Fix, Schwyz!“ quäkt Jürgen blöd vom Paß.}
+	\schreibschrift{Falsches Üben von Xylophonmusik quält jeden größeren Zwerg.}
+\end{small}
+
+\end{document}
+
+% https://www.schulschrift.at/sandkiste.html

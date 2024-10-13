@@ -1,0 +1,72 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = de_DE_OLDSPELL
+% !TEX TS-program = lualatex
+\ifdefined\directlua\else
+	\errmessage{LuaTeX is required to typeset this document}
+	\csname @@end\expandafter\endcsname
+\fi
+\documentclass[version=last,paper=A4,landscape,fontsize=24pt,DIV=20]{scrartcl}
+\usepackage{scrlayer-scrpage}
+\usepackage{polyglossia}
+\setmainlanguage[spelling=old,variant=german]{german}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage{tabularray}
+\newfontfamily\prima{Prima}
+\defaultfontfeatures[\prima]{Ligatures=TeX}
+
+\pagestyle{empty}
+\renewcommand*{\titlepagestyle}{empty}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+\newcommand{\testworteA}{schlucken, treten, davonrasen, aufkochen}
+\newcommand{\testworteB}{abjodeln, angehend, Handyhülle}
+\newcommand{\testworteC}{abändern, zuhören, aufführen}
+\newcommand{\testworteD}{Schweinshaxe, Axt, Äxte}
+\newcommand{\testworteE}{\testworteD}
+\newcommand{\testworteF}{Straße, Muße, Fußsohle}
+\newcommand{\testworteG}{Ei, Glas, Kuh, Lurch, Quark, Rost}
+\begin{tblr}{
+		colspec={|r|[dashed]c|[dashed]c|l},
+		column{1-3} = {font=\sffamily},
+		hlines = {1,2,3}{dashed},
+	}
+	% k, r, t unterbrochen
+	\SetCell[r=2]{m} k, r, t
+		& unterbrochen & 1a & {\prima\itshape\addfontfeatures{StylisticSet={5}}\testworteA} \\
+		& verbunden & 1b &  {\prima\itshape \testworteA} \\
+
+	% g, j, y unterbrochen
+	\SetCell[r=2]{m} g, j, y
+		& unterbrochen & 2a & {\prima\itshape\addfontfeatures{StylisticSet={4}}\testworteB} \\
+		& verbunden & 2b &  {\prima\itshape \testworteB} \\
+
+	% ä, ö, ü unterbrochen
+	\SetCell[r=2]{m} ä, ö, ü
+		& unterbrochen & 3a & {\prima\itshape\addfontfeatures{StylisticSet={6}}\testworteC} \\
+		& verbunden & 3b &  {\prima\itshape\testworteC} \\
+	
+	% x unverbunden
+	\SetCell[r=2]{m} x
+		& unverbunden & 4a & {\prima\itshape\addfontfeatures{StylisticSet={7}}\testworteD} \\
+		& verbunden & 4b &  {\prima\itshape\testworteD} \\
+
+	% x alternativ verbunden
+	\SetCell[r=2]{m} x
+		& alternativ verb. & 5a & {\prima\itshape\addfontfeatures{StylisticSet={8}}\testworteE} \\
+		& verbunden & 5b &  {\prima\itshape\testworteE} \\
+
+	% ß mit Unterlänge
+	\SetCell[r=2]{m} ß
+		& Unterlänge & 6a & {\prima\itshape\addfontfeatures{StylisticSet={9}}\testworteF} \\
+		& ohne Ul. & 6b &  {\prima\itshape\testworteF} \\
+
+	% E G K L Q R unverbunden
+	\SetCell[r=2]{m} {E G K\\L Q R}
+		& unverbunden & 7a & {\prima\itshape\addfontfeatures{StylisticSet={17}}\testworteG} \\
+		& verbunden & 7b & {\prima\itshape\testworteG} \\
+
+\end{tblr}
+
+\end{document}

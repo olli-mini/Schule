@@ -1,0 +1,65 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = de_DE_OLDSPELL
+% !TEX TS-program = lualatex
+\ifdefined\directlua\else
+	\errmessage{LuaTeX is required to typeset this document}
+	\csname @@end\expandafter\endcsname
+\fi
+\documentclass[version=last,paper=A4,fontsize=18pt,DIV=20]{scrartcl}
+\usepackage{scrlayer-scrpage}
+\usepackage{polyglossia}
+\setmainlanguage[spelling=old,variant=german]{german}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage{tabularray}
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections}
+\newfontfamily\prima{Prima}
+\defaultfontfeatures[\prima]{Ligatures=TeX,Renderer=HarfBuzz,StylisticSet={4,5,6,9,17}}
+\setmainfont{Prima Cursive}
+\setsansfont{Prima Regular}
+\addfontfeatures{Ligatures=TeX,Renderer=HarfBuzz,StylisticSet={4,5,6,9,17}}
+%\setmainfont{font}
+%\setmonofont{font}
+%\setromanfont{font}
+%\setsansfont{font}
+
+\pagestyle{empty}
+\renewcommand*{\titlepagestyle}{empty}
+\setlength{\parindent}{0pt}
+
+\tikzset{
+	hilfsline/.style={gray,densely dotted,semithick},
+	Hilfsline/.style={lightgray,solid,thick},
+	grundschriftprobe/.style={font=\prima\addfontfeatures{StylisticSet={4,5,6,9,17}}},
+	schreibschriftprobe/.style={font=\prima\itshape\addfontfeatures{StylisticSet={4,5,6,9,17}}},
+	unsichtbar/.style={opacity=0,anchor=text,inner sep=0pt},
+	textprobe/.style={anchor=text,inner sep=0pt},
+}
+
+\newrobustcmd{\grundschrift}[1]{
+	\begin{tikzpicture}[grundschriftprobe,anchor=text]
+		\node[unsichtbar](ABC) {ABCDefgkjHpqxyzß};
+		\node[unsichtbar](Umlaute) {ÄÖÜ};
+
+		\coordinate (ABCLowest) at (ABC.south west); % unten links (bspw. tiefster Punkt eines y)
+		\coordinate (ABCBase) at (ABC.text); % Grundlinie der Schrift
+		\coordinate (ABCSmallHeight) at ($(ABC.text)+(0, 1ex)$); % Höhe des kleinen Buchstaben x
+		\coordinate (ABCHighest) at (ABC.north west); % Versalhöhe
+
+		\draw[hilfsline] (ABCBase) -- ++(\linewidth,0);
+		\draw[hilfsline] (ABCSmallHeight) -- ++(\linewidth,0);
+		\draw[Hilfsline] (ABCLowest) -- ++(\linewidth,0);
+		\draw[Hilfsline] (ABC.north west) -- ++(\linewidth,0);
+
+		\node[textprobe] {~#1};
+	\end{tikzpicture}
+	\par
+	\vspace{.75ex}
+}
+
+
+\begin{document}
+	\include{FFS.tex}
+\end{document}
+% https://www.schulschrift.at/sandkiste.html
