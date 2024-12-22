@@ -1,11 +1,25 @@
+% vim: set autoindent smartindent ts=4 sw=4 sts=0 et filetype=tex:
 % !TeX encoding = UTF-8
 % !TeX spellcheck = de_DE_OLDSPELL
 % !TEX TS-program = lualatex
 \ifdefined\directlua\else
-	\errmessage{LuaTeX is required to typeset this document}
-	\csname @@end\expandafter\endcsname
+    \errmessage{LuaTeX is required to typeset this document}
+    \csname @@end\expandafter\endcsname
 \fi
-\documentclass[version=last,paper=A6,fontsize=11pt,DIV=20]{scrartcl}
+\iftwenty
+    \documentclass[version=last,paper=A4,fontsize=11pt,DIV=20]{scrartcl}
+    \directlua{MAX=20}
+\else
+    \documentclass[version=last,paper=A6,fontsize=11pt,DIV=20]{scrartcl}
+    \directlua{MAX=10}
+\fi
+% \if@twenty
+%     \documentclass[version=last,paper=A4,fontsize=11pt,DIV=20]{scrartcl}
+%     \directlua{MAX=20}
+% \else
+%     \documentclass[version=last,paper=A6,fontsize=11pt,DIV=20]{scrartcl}
+%     \directlua{MAX=10}
+% \fi
 \usepackage{scrlayer-scrpage}
 \usepackage{polyglossia}
 \setmainlanguage[spelling=old,variant=german]{german}
@@ -14,28 +28,8 @@
 \usepackage{fontspec}
 \usepackage{tabularray}
 \usepackage{pdfpages}
-\usepackage{tikz}
+\usepackage{luacode}
 \renewcommand{\familydefault}{\sfdefault}
-
-\SetTblrInner[tblr]{
-    colspec         = {|X[1,m]|X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|[dotted]X[1,m]|}, % font=\smaller
-    row{1}          = {bg=azure8,font=\sffamily\bfseries\strut},
-    column{1}       = {bg=azure8,font=\sffamily\bfseries\strut},
-    cell{2}{2}      = {bg=gray9},
-    cell{3}{3}      = {bg=gray9},
-    cell{4}{4}      = {bg=gray9},
-    cell{5}{5}      = {bg=gray9},
-    cell{6}{6}      = {bg=gray9},
-    cell{7}{7}      = {bg=gray9},
-    cell{8}{8}      = {bg=gray9},
-    cell{9}{9}      = {bg=gray9},
-    cell{10}{10}    = {bg=gray9},
-    cell{11}{11}    = {bg=gray9},
-    rowhead=1,
-    rowfoot=1,
-    colsep=3pt,
-    rowsep=4pt,
-}
 
 \pagestyle{empty}
 \renewcommand*{\titlepagestyle}{empty}
@@ -43,31 +37,87 @@
 \newfontfamily\boxedsymbols{DejaVu Sans}
 \newcommand{\M}{\boxedsymbols ✕}
 
+\begin{filecontents}[overwrite,noheader]{\jobname.lua}
+    function errout(...)
+        local formatted = string.format(...)
+        if tex.error ~= nil then
+            tex.error(formatted)
+        else
+            print(formatted)
+        end
+    end
+
+    function writeFile(fname, content)
+        local outfile = assert(io.open(fname, "w"), string.format("Error on io.open(%s)", fname))
+        outfile:write(content)
+        outfile:close()
+    end
+
+    function buildTable(x)
+        x = x or 10
+        local output = ""
+        output = output .. [[
+\begin{tblr}{
+]]
+        local colspec = "|X[1,c,m]"
+        for i = 0, x do
+            output = output .. [[
+    cell{]] .. i + 2 .. [[}{]] .. i + 2 .. [[}      = {bg=gray9},
+]]
+            if i == 0 then
+                colspec = colspec .. "|X[1,c,m]"
+            else
+                colspec = colspec .. "|[dotted]X[1,c,m]"
+            end
+        end
+        colspec = colspec .. "|"
+        output = output .. [[
+    row{2}          = {fg=gray5},
+    column{2}       = {fg=gray5},
+    row{1}          = {fg=black,bg=azure8,font=\sffamily\bfseries\strut},
+    column{1}       = {fg=black,bg=azure8,font=\sffamily\bfseries\strut},
+    colspec         = {]] .. colspec .. [[},
+    rowhead=1,
+    rowfoot=1,
+    colsep=3pt,
+    rowsep=4pt,
+}
+    \hline
+    \M]]
+        for i = 0, x do -- first row with column headers
+            output = output .. " & " .. i
+        end
+        output = output .. [[ \\*
+    \hline
+]]
+        for row = 0, x do
+            output = output .. string.format("    %d", row)
+            for col = 0, x do
+                output = output .. string.format(" & %d", col * row)
+            end
+            if row == x then
+                output = output .. [[ \\*
+    \hline
+]]
+            else
+                output = output .. [[ \\*
+    \hline[dotted]
+]]
+            end
+        end
+        output = output .. [[
+\end{tblr}
+        ]]
+        return output
+    end
+\end{filecontents}
+
+\AtBeginDocument{\directlua{
+    dofile("\jobname.lua")
+    writeFile("table-\jobname.tex", buildTable(MAX))
+}}
+
 \begin{document}
-\centering
-    \begin{tblr}{cccccccccccc}
-        \hline
-        \M &  1 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  9 & 10 \\*
-        \hline
-        1  &  1 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  9 & 10 \\*
-        \hline[dotted]
-        2  &  2 &  4 &  6 &  8 & 10 & 12 & 14 & 16 & 18 & 20 \\*
-        \hline[dotted]
-        3  &  3 &  6 &  9 & 12 & 15 & 18 & 21 & 24 & 27 & 30 \\*
-        \hline[dotted]
-        4  &  4 &  8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 & 40 \\*
-        \hline[dotted]
-        5  &  5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 & 50 \\*
-        \hline[dotted]
-        6  &  6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 & 60 \\*
-        \hline[dotted]
-        7  &  7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 & 70 \\*
-        \hline[dotted]
-        8  &  8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 & 80 \\*
-        \hline[dotted]
-        9  &  9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 & 90 \\*
-        \hline[dotted]
-        10 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 \\*
-        \hline
-    \end{tblr}
+    \centering
+    \input{table-\jobname}
 \end{document}
