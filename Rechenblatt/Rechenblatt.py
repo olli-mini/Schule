@@ -91,29 +91,43 @@ def parse_options() -> argparse.Namespace:
     )
     return cfg, parser.parse_args()
 
+def op_choice(x):
+    retval = random.choice(x)
+    assert len(retval) == 1, "Erwarte _eine_ Operation zurück"
+    assert retval in {"+", "-", "*", "/"}, "Nur diese Operationen sind erlaubt"
+    return retval
 
-def aufgaben_plusminus(anzahl: int = 30, bereich: Tuple[int, int] = (1, 100), max_ergebnis: int = 100, operationen: int = 1, ops: str = "+-", positiv: bool = True):
+def aufgaben_mix(anzahl: int = 30, bereich: Tuple[int, int] = (1, 100), max_ergebnis: int = 100, operationen: int = 1, ops: str = "+-*/", positiv: bool = True):
     """\
-    Erzeugt Aufgaben für Addition/Subtraktion mit bis zu vier Operanden
+    Erzeugt Aufgaben für Addition/Subtraktion/Multiplikation/Division mit bis zu vier Operanden
     """
     max_ergebnis = max_ergebnis or bereich[1]
     randint = random.randint
-    choice = random.choice
     assert operationen < 4, "Darf die Anzahl von vier Operationen nicht überschreiten, ansonsten muß das Tupel 'operanden' angepaßt werden"
     aufg_liste = []
     while len(aufg_liste) < anzahl:
         operanden = (randint(*bereich), randint(*bereich), randint(*bereich), randint(*bereich))
-        aufgabe = f"{operanden[0]} {choice(ops)} {operanden[1]}"
+        if operanden[0] == operanden[1]:
+            continue
+        if operationen > 1 and operanden[1] == operanden[2]:
+            continue
+        if operationen < 2 and (operanden[0] in {1} or operanden[1] in {1, 2}):
+            continue
+        aufgabe = f"{operanden[0]} {op_choice(ops)} {operanden[1]}"
+        if "/" in aufgabe: # Extra-Bedingung für Division ... nur ganze Zahlen!
+            remainder = eval(aufgabe.replace("/", "%"))
+            if remainder != 0:
+                continue
         res = eval(aufgabe)
         if positiv and (res < 0):
             continue
         if operationen >= 2:
-            aufgabe = f"{aufgabe} {choice(ops)} {operanden[2]}"
+            aufgabe = f"{aufgabe} {op_choice(ops)} {operanden[2]}"
         res = eval(aufgabe)
         if positiv and (res < 0):
             continue
         if operationen >= 3:
-            aufgabe = f"{aufgabe} {choice(ops)} {operanden[3]}"
+            aufgabe = f"{aufgabe} {op_choice(ops)} {operanden[3]}"
         res = eval(aufgabe)
         if res > max_ergebnis:
             continue
@@ -123,11 +137,15 @@ def aufgaben_plusminus(anzahl: int = 30, bereich: Tuple[int, int] = (1, 100), ma
             aufg_liste.append(aufgabe)
     return aufg_liste
 
+def op_filter(aufgabe):
+    return aufgabe.replace("*", "$\\cdot$").replace("/", "$\\div$")
+
 def schreib_aufgaben(datei: str, aufgaben: List[str]):
     with open(datei, "w") as ausgabe:
+        print(f"Schreibe: {datei}", file=sys.stderr)
         print("\t\\begin{mdframed}[style=Rechnen]\n\t\t\\begin{tblr}{\n\t\t\tcolspec={X[3,r]X[2,l]X[3,r]X[2,l]X[3,r]X[2,l]},\n\t\t\twidth=\\textwidth,\n\t\t\trowsep=1pt,\n\t\t\t}", file=ausgabe)
         for aufgabe in [aufgaben[i:i+3] for i in range(0, len(aufgaben), 3)]:
-            print(f"\t\t\t{{ {aufgabe[0]} = }} & \\placeholder & {{ {aufgabe[1]} = }} & \\placeholder & {{ {aufgabe[2]} = }} & \\placeholder \\\\", file=ausgabe)
+            print(f"\t\t\t{{ {op_filter(aufgabe[0])} = }} & \\placeholder & {{ {op_filter(aufgabe[1])} = }} & \\placeholder & {{ {op_filter(aufgabe[2])} = }} & \\placeholder \\\\", file=ausgabe)
         print("\t\t\\end{tblr}\n\t\\centering Benötigte Zeit:\\strut~\\placeholderx{7em} \n\t\\end{mdframed}", file=ausgabe)
 
 def main() -> int:
@@ -136,20 +154,30 @@ def main() -> int:
     """
     random.seed()
 
-    schreib_aufgaben("aufgaben-plus-1op-bis-20.tex", aufgaben_plusminus(30, (1, 20), None, 1, "+"))
-    schreib_aufgaben("aufgaben-minus-1op-bis-20.tex", aufgaben_plusminus(30, (1, 20), None, 1, "-"))
-    schreib_aufgaben("aufgaben-plusminus-1op-bis-20.tex", aufgaben_plusminus(30, (1, 20), None, 1, "+-"))
-    schreib_aufgaben("aufgaben-plusminus-1op-bis-20-zwo.tex", aufgaben_plusminus(30, (1, 20), None, 1, "+-"))
+    schreib_aufgaben("aufgaben-plus-1op-bis-20.tex", aufgaben_mix(30, (1, 20), None, 1, "+"))
+    schreib_aufgaben("aufgaben-minus-1op-bis-20.tex", aufgaben_mix(30, (1, 20), None, 1, "-"))
+    schreib_aufgaben("aufgaben-plusminus-1op-bis-20.tex", aufgaben_mix(30, (1, 20), None, 1, "+-"))
+    schreib_aufgaben("aufgaben-plusminus-1op-bis-20-zwo.tex", aufgaben_mix(30, (1, 20), None, 1, "+-"))
 
-    schreib_aufgaben("aufgaben-plus-1op-bis-100.tex", aufgaben_plusminus(30, (1, 100), None, 1, "+"))
-    schreib_aufgaben("aufgaben-minus-1op-bis-100.tex", aufgaben_plusminus(30, (1, 100), None, 1, "-"))
-    schreib_aufgaben("aufgaben-plusminus-1op-bis-100.tex", aufgaben_plusminus(30, (1, 100), None, 1, "+-"))
-    schreib_aufgaben("aufgaben-plusminus-1op-bis-100-zwo.tex", aufgaben_plusminus(30, (1, 100), None, 1, "+-"))
+    schreib_aufgaben("aufgaben-plus-1op-bis-100.tex", aufgaben_mix(30, (1, 100), None, 1, "+"))
+    schreib_aufgaben("aufgaben-minus-1op-bis-100.tex", aufgaben_mix(30, (1, 100), None, 1, "-"))
+    schreib_aufgaben("aufgaben-plusminus-1op-bis-100.tex", aufgaben_mix(30, (1, 100), None, 1, "+-"))
+    schreib_aufgaben("aufgaben-plusminus-1op-bis-100-zwo.tex", aufgaben_mix(30, (1, 100), None, 1, "+-"))
 
-    schreib_aufgaben("aufgaben-plus-2op-bis-100.tex", aufgaben_plusminus(30, (1, 100), None, 2, "+"))
-    schreib_aufgaben("aufgaben-minus-2op-bis-100.tex", aufgaben_plusminus(30, (1, 100), None, 2, "-"))
-    schreib_aufgaben("aufgaben-plusminus-2op-bis-100.tex", aufgaben_plusminus(30, (1, 100), None, 2, "+-"))
-    schreib_aufgaben("aufgaben-plusminus-2op-bis-100-zwo.tex", aufgaben_plusminus(30, (1, 100), None, 2, "+-"))
+    schreib_aufgaben("aufgaben-plus-2op-bis-100.tex", aufgaben_mix(30, (1, 100), None, 2, "+"))
+    schreib_aufgaben("aufgaben-minus-2op-bis-100.tex", aufgaben_mix(30, (1, 100), None, 2, "-"))
+    schreib_aufgaben("aufgaben-plusminus-2op-bis-100.tex", aufgaben_mix(30, (1, 100), None, 2, "+-"))
+    schreib_aufgaben("aufgaben-plusminus-2op-bis-100-zwo.tex", aufgaben_mix(30, (1, 100), None, 2, "+-"))
+
+    schreib_aufgaben("aufgaben-multiplikation-1op-bis-15x15.tex", aufgaben_mix(30, (1, 15*15), None, 1, "*"))
+    schreib_aufgaben("aufgaben-division-1op-bis-15x15.tex", aufgaben_mix(30, (1, 15*15), None, 1, "/"))
+    schreib_aufgaben("aufgaben-multidivi-1op-bis-15x15.tex", aufgaben_mix(30, (1, 15*15), None, 1, "*/"))
+    schreib_aufgaben("aufgaben-multidivi-1op-bis-15x15-zwo.tex", aufgaben_mix(30, (1, 15*15), None, 1, "*/"))
+
+    schreib_aufgaben("aufgaben-multiplikation-1op-bis-10x10.tex", aufgaben_mix(30, (1, 10*10), None, 1, "*"))
+    schreib_aufgaben("aufgaben-division-1op-bis-10x10.tex", aufgaben_mix(30, (1, 10*10), None, 1, "/"))
+    schreib_aufgaben("aufgaben-multidivi-1op-bis-10x10.tex", aufgaben_mix(30, (1, 10*10), None, 1, "*/"))
+    schreib_aufgaben("aufgaben-multidivi-1op-bis-10x10-zwo.tex", aufgaben_mix(30, (1, 10*10), None, 1, "*/"))
     return 0
 
 
